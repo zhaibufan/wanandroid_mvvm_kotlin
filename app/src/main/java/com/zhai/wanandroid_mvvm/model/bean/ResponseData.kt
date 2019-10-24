@@ -2,7 +2,7 @@ package com.zhai.wanandroid_mvvm.model.bean
 
 import java.io.Serializable
 
-data class WanResponse<T : Any>(val responseCode : Int, val responseMessage : String, val data : T)
+data class WanResponse<out T>(val responseCode : Int, val responseMessage : String, val data : T)
 
 data class ArticleList(val offset: Int, val size: Int, val total: Int, val pageCount: Int,
                        val curPage: Int, val over: Boolean, val datas: List<Article>): Serializable

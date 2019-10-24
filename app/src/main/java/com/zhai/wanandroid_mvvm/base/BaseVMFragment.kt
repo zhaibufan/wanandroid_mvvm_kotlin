@@ -35,8 +35,12 @@ abstract class BaseVMFragment<VM : BaseViewModel> : Fragment(), LifecycleObserve
     }
 
     private fun initVM() {
-        mViewModel = ViewModelProvider(this).get(providerVMClass() as Class<VM>)
-        lifecycle.addObserver(mViewModel)
+        providerVMClass()?.let {
+            mViewModel = ViewModelProvider(this).get(it)
+            mViewModel.let {
+                lifecycle::addObserver
+            }
+        }
     }
 
     open fun providerVMClass() : Class<VM>? = null
