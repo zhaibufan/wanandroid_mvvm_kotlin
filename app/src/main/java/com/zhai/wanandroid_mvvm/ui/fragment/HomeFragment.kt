@@ -59,6 +59,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         super.startObserve()
         mViewModel.apply {
             articleData.observe(this@HomeFragment, Observer { articleList -> updateArticleData(articleList) })
+            mBanner.observe(this@HomeFragment, Observer { banner -> Log.d(TAG, banner[0].desc) })
         }
     }
 
