@@ -8,8 +8,7 @@ import com.zhai.wanandroid_mvvm.executeResponse
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Banner
 import com.zhai.wanandroid_mvvm.model.repository.HomeRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class HomeViewModel : BaseViewModel() {
 
@@ -23,10 +22,12 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun getHomeArticles(pageIndex : Int) {
+    fun getHomeArticles(pageIndex : Int, errorBlock: suspend CoroutineScope.()-> Unit) {
         launch {
-            val result = withContext(Dispatchers.IO) {homeRepository.getHomeArticles(pageIndex)}
-            executeResponse(result, {articleData.value = result.data}, {})
+            val result = withContext(Dispatchers.IO) {
+                homeRepository.getHomeArticles(pageIndex)
+            }
+            executeResponse(result, {articleData.value = result.data}, errorBlock)
         }
     }
 }

@@ -46,4 +46,4 @@ data class Banner(val desc: String,
                   val order: Int,
                   val title: String,
                   val type: Int,
-                  val url: String)
+                  val url: String) : Serializable

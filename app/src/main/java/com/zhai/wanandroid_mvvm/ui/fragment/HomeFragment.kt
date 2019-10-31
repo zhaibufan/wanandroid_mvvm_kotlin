@@ -1,16 +1,19 @@
 package com.zhai.wanandroid_mvvm.ui.fragment
 
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhai.wanandroid_mvvm.R
 import com.zhai.wanandroid_mvvm.base.BaseVMFragment
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
+import com.zhai.wanandroid_mvvm.model.bean.Banner
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeArticleAdapter
+import com.zhai.wanandroid_mvvm.ui.adapter.HomeBannerAdapter
+import com.zhai.wanandroid_mvvm.utils.toast
 import com.zhai.wanandroid_mvvm.vm.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
-
+import kotlinx.android.synthetic.main.home_header_view.view.*
 
 
 class HomeFragment : BaseVMFragment<HomeViewModel>() {
@@ -19,10 +22,13 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     private var pagerIndex = 0
     private val mLayoutManager by lazy { LinearLayoutManager(context) }
     private val mArticleAdapter by lazy { HomeArticleAdapter() }
+    private val mHeaderView by lazy { View.inflate(context, R.layout.home_header_view, null) }
+    private val mBannerAdapter by lazy { HomeBannerAdapter(context!!) }
     override fun providerVMClass(): Class<HomeViewModel>? = HomeViewModel::class.java
     override fun getLayoutResId(): Int = R.layout.fragment_home
 
     override fun initView() {
+        initBanner()
         initAdapter()
         mRecyclerView.run {
             layoutManager = mLayoutManager
@@ -35,21 +41,36 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         refresh()
     }
 
+    private fun initBanner() {
+        mHeaderView.viewPager.run {
+            adapter = mBannerAdapter
+        }
+    }
+
     private fun initAdapter() {
         mArticleAdapter.run {
-            setOnItemClickListener { adapter, view, position -> Toast.makeText(context, position, Toast.LENGTH_LONG).show() }
+            setOnItemClickListener { adapter, view, position -> context?.toast(position.toString())}
             setOnLoadMoreListener({loadMore()}, mRecyclerView)
+            addHeaderView(mHeaderView)
         }
     }
 
     private fun loadMore() {
         mArticleAdapter.isLoadMoreEnable
         pagerIndex ++
-        mViewModel.getHomeArticles(pagerIndex)
+        getData(pagerIndex)
     }
 
     private fun refresh() {
-        mViewModel.getHomeArticles(0)
+        getData(0)
+    }
+
+    private fun getData(pagerIndex : Int) {
+        mViewModel.getHomeArticles(pagerIndex) {
+            context?.toast("出错了")
+            homeRefreshLayout.isRefreshing = false
+            mArticleAdapter.loadMoreComplete()
+        }
     }
 
     override fun initData() {
@@ -59,8 +80,12 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         super.startObserve()
         mViewModel.apply {
             articleData.observe(this@HomeFragment, Observer { articleList -> updateArticleData(articleList) })
-            mBanner.observe(this@HomeFragment, Observer { banner -> Log.d(TAG, banner[0].desc) })
+            mBanner.observe(this@HomeFragment, Observer { banner -> updateBannerData(banner) })
         }
+    }
+
+    private fun updateBannerData(banner: List<Banner>) {
+        mBannerAdapter.setData(banner)
     }
 
     private fun updateArticleData(articleList: ArticleList) {
@@ -73,5 +98,13 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
                 loadMoreComplete()
             }
         }
+    }
+
+    override fun onError(e: Throwable) {
+        super.onError(e)
+        Log.d(TAG, "onError = " + e.message)
+        context?.toast("没有网络")
+        homeRefreshLayout.isRefreshing = false
+        mArticleAdapter.loadMoreComplete()
     }
 }
