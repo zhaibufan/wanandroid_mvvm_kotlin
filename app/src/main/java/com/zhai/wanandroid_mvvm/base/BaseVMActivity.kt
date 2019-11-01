@@ -26,7 +26,7 @@ abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), Lifecyc
     }
 
     private fun initVM() {
-        providerVMClass<VM>()?.let {
+        providerVMClass()?.let {
             mViewModel = ViewModelProvider(this).get(it)
             mViewModel.let {
                 lifecycle::addObserver
@@ -34,7 +34,7 @@ abstract class BaseVMActivity<VM : BaseViewModel> : AppCompatActivity(), Lifecyc
         }
     }
 
-    open fun <VM> providerVMClass() : Class<VM>? = null
+    open fun providerVMClass() : Class<VM>? = null
 
     open fun startObserve() {
         mViewModel.mExceptions.observe(this, Observer { t -> onError(t) })

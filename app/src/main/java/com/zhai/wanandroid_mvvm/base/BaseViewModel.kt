@@ -33,22 +33,19 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
         // coroutineScope的作用是当耗时任务执行完成后自动切换到协程的初始线程
         // 协程初始线程就是上面viewModelScope.launch的线程
-//        coroutineScope {
-//            try {
-//                runBlock()
-//            } catch (e: Throwable) {
-//                if (e !is CancellationException || handleCancellationExceptionManually) {
-//                    mExceptions.value = e
-//                    catchBlock(e)
-//                } else {
-//                    throw e
-//                }
-//            } finally {
-//                finallyBlock()
-//            }
-//        }
         coroutineScope {
-            runBlock()
+            try {
+                runBlock()
+            } catch (e: Throwable) {
+                if (e !is CancellationException || handleCancellationExceptionManually) {
+                    mExceptions.value = e
+                    catchBlock(e)
+                } else {
+                    throw e
+                }
+            } finally {
+                finallyBlock()
+            }
         }
     }
 

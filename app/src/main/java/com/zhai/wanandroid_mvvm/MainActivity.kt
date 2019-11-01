@@ -1,12 +1,26 @@
 package com.zhai.wanandroid_mvvm
 
+import android.util.Log
+import android.view.MenuItem
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.google.android.material.navigation.NavigationView
 import com.zhai.wanandroid_mvvm.base.BaseActivity
+import com.zhai.wanandroid_mvvm.ui.activity.LoginActivity
 import com.zhai.wanandroid_mvvm.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener{
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.nav_login -> { toActivity<LoginActivity>()}
+            else -> {}
+        }
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
 
     private val tabList = arrayOf("首页", "广场","最新项目", "体系", "导航")
     private val fragmentList = arrayListOf<Fragment>()
@@ -39,7 +53,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
+        navigationView.setNavigationItemSelectedListener(this)
         initViewPager()
+        mainToolBar.setNavigationOnClickListener { drawer.openDrawer(GravityCompat.START) }
     }
 
     override fun initData() {
