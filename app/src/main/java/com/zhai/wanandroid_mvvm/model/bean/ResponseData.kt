@@ -2,7 +2,10 @@ package com.zhai.wanandroid_mvvm.model.bean
 
 import java.io.Serializable
 
-data class WanResponse<out T>(val responseCode : Int, val responseMessage : String, val data : T)
+/**
+ * 数据类
+ */
+data class WanResponse<out T>(val errorCode : Int, val errorMsg : String, val data : T)
 
 data class ArticleList(val offset: Int, val size: Int, val total: Int, val pageCount: Int,
                        val curPage: Int, val over: Boolean, val datas: List<Article>): Serializable
@@ -47,3 +50,11 @@ data class Banner(val desc: String,
                   val title: String,
                   val type: Int,
                   val url: String) : Serializable
+
+data class User(val collectIds: List<Int>,
+                val email: String,
+                val icon: String,
+                val id: Int,
+                val password: String,
+                val type: Int,
+                val username: String)

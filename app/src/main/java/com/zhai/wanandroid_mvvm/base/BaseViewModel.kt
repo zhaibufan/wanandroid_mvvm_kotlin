@@ -17,7 +17,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         }
     }
 
-    //viewModelScope.launch默认是在主线程
+    //viewModelScope.launch若不声明Dispatchers默认是在主线程
     private fun launchOnUI(runBlock: suspend CoroutineScope.() -> Unit) {
         viewModelScope.launch {
             runBlock()
