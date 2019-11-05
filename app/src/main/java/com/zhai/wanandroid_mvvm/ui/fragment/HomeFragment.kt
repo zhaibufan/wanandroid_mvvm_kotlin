@@ -8,6 +8,7 @@ import com.zhai.wanandroid_mvvm.R
 import com.zhai.wanandroid_mvvm.base.BaseVMFragment
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Banner
+import com.zhai.wanandroid_mvvm.onNetError
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeArticleAdapter
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeBannerAdapter
 import com.zhai.wanandroid_mvvm.utils.toast
@@ -102,9 +103,15 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     override fun onError(e: Throwable) {
         super.onError(e)
-        Log.d(TAG, "onError = " + e.message)
-        context?.toast("没有网络")
-        homeRefreshLayout.isRefreshing = false
-        mArticleAdapter.loadMoreComplete()
+//        Log.d(TAG, "onError = " + e.message)
+//        context?.toast("没有网络")
+//        homeRefreshLayout.isRefreshing = false
+//        mArticleAdapter.loadMoreComplete()
+
+        activity?.onNetError(e){
+            Log.d(TAG, "onError = " + e.message)
+            homeRefreshLayout.isRefreshing = false
+            mArticleAdapter.loadMoreComplete()
+        }
     }
 }

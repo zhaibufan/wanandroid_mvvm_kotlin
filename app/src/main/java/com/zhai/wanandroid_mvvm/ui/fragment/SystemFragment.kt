@@ -8,7 +8,7 @@ class SystemFragment : BaseVMFragment<HomeViewModel>() {
 
     override fun providerVMClass(): Class<HomeViewModel>? = HomeViewModel::class.java
 
-    override fun getLayoutResId(): Int = R.layout.fragment_home
+    override fun getLayoutResId(): Int = R.layout.fragment_system
 
     override fun initView() {
     }

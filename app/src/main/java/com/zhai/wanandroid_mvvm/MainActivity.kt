@@ -1,6 +1,5 @@
 package com.zhai.wanandroid_mvvm
 
-import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -26,7 +25,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val fragmentList = arrayListOf<Fragment>()
     private val homeFragment by lazy { HomeFragment() }
     private val squareFragment by lazy { SquareFragment() }
-    private val projectTypeFragment by lazy { ProjectTypeFragment() }
+    private val projectTypeFragment by lazy { ProjectTypeFragment.newInstance(0, true) }
     private val systemFragment by lazy { SystemFragment() }
     private val navigationFragment by lazy { NavigationFragment() }
     private val fragmentManager by lazy { this.supportFragmentManager }
