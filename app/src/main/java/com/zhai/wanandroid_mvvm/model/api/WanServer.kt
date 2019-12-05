@@ -1,9 +1,6 @@
 package com.zhai.wanandroid_mvvm.model.api
 
-import com.zhai.wanandroid_mvvm.model.bean.ArticleList
-import com.zhai.wanandroid_mvvm.model.bean.Banner
-import com.zhai.wanandroid_mvvm.model.bean.User
-import com.zhai.wanandroid_mvvm.model.bean.WanResponse
+import com.zhai.wanandroid_mvvm.model.bean.*
 import retrofit2.http.*
 
 interface WanServer {
@@ -20,5 +17,25 @@ interface WanServer {
 
     @FormUrlEncoded
     @POST("/user/register")
-    suspend fun register(@Field("username") userName: String, @Field("password") passWord: String, @Field("repassword") rePassWord: String): WanResponse<User>
+    suspend fun register(
+        @Field("username") userName: String, @Field("password") passWord: String, @Field(
+            "repassword"
+        ) rePassWord: String
+    ): WanResponse<User>
+
+    @FormUrlEncoded
+    @POST("/article/query/{page}/json")
+    suspend fun searchHot(@Path("page") page: Int, @Field("k") key: String): WanResponse<ArticleList>
+
+    @GET("/friend/json")
+    suspend fun getWebsites() : WanResponse<List<Hot>>
+
+    @GET("/hotkey/json")
+    suspend fun getHot(): WanResponse<List<Hot>>
+
+    @POST("/lg/collect/{id}/json")
+    suspend fun collectArticle(@Path("id") id : Int) : WanResponse<ArticleList>
+
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun cancelCollectArticle(@Path("id") id: Int): WanResponse<ArticleList>
 }

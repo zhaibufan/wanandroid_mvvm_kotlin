@@ -56,16 +56,25 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         }
     }
 
+    /**
+     * 加载更多
+     */
     private fun loadMore() {
         mArticleAdapter.isLoadMoreEnable
         pagerIndex ++
         getData(pagerIndex)
     }
 
+    /**
+     * 刷新
+     */
     private fun refresh() {
         getData(0)
     }
 
+    /**
+     * 获取首页列表数据
+     */
     private fun getData(pagerIndex : Int) {
         mViewModel.getHomeArticles(pagerIndex) {
             context?.toast("出错了")

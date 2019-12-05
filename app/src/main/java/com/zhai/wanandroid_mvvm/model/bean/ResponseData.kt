@@ -58,3 +58,10 @@ data class User(val collectIds: List<Int>,
                 val password: String,
                 val type: Int,
                 val username: String)
+
+data class Hot(val id: Int,
+               val link: String,
+               val name: String,
+               val order: Int,
+               val visible: Int,
+               val icon: String)

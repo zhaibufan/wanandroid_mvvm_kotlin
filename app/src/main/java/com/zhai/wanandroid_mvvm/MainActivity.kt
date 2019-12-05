@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.google.android.material.navigation.NavigationView
 import com.zhai.wanandroid_mvvm.base.BaseActivity
 import com.zhai.wanandroid_mvvm.ui.activity.LoginActivity
+import com.zhai.wanandroid_mvvm.ui.activity.SearchActivity
 import com.zhai.wanandroid_mvvm.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -55,6 +56,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         navigationView.setNavigationItemSelectedListener(this)
         initViewPager()
         mainToolBar.setNavigationOnClickListener { drawer.openDrawer(GravityCompat.START) }
+        mainSearch.setOnClickListener { toActivity<SearchActivity>() }
     }
 
     override fun initData() {
