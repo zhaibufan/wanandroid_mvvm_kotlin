@@ -3,7 +3,9 @@ package com.zhai.wanandroid_mvvm.ui.activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhai.wanandroid_mvvm.R
@@ -29,6 +31,20 @@ class SearchActivity : BaseVMActivity<SearchViewModel>() {
     override fun providerVMClass(): Class<SearchViewModel>? = SearchViewModel::class.java
     override fun getLayoutResId(): Int = R.layout.activity_search
 
+    private val onQueryTextListener = object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+        override fun onQueryTextChange(newText: String?) = false
+
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            query?.run {
+                key = query
+                currentPage = 0
+                startSearch(currentPage, key)
+            }
+            return true
+        }
+    }
+
     override fun initView() {
         initTagLayout()
         initRecyclerView()
@@ -36,6 +52,14 @@ class SearchActivity : BaseVMActivity<SearchViewModel>() {
             currentPage = 0
             startSearch(currentPage, key)
         }
+        search_view.run {
+            //设置搜索框直接展开显示。左侧有放大镜(在搜索框中) 右侧有叉叉 可以关闭搜索框
+            isIconified = false
+            //设置搜索框直接展开显示。左侧有无放大镜(在搜索框中) 右侧无叉叉 有输入内容后有叉叉 不能关闭搜索框
+            onActionViewExpanded()
+            setOnQueryTextListener(onQueryTextListener)
+        }
+        toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun initData() {
@@ -89,6 +113,7 @@ class SearchActivity : BaseVMActivity<SearchViewModel>() {
      * 开始搜索
      */
     private fun startSearch(page : Int, key : String) {
+        search_view.clearFocus()
         if (page == 0) {
             searchList.clear()
             searchRefreshLayout.isRefreshing = true
@@ -146,6 +171,16 @@ class SearchActivity : BaseVMActivity<SearchViewModel>() {
 
             searchRefreshLayout.isRefreshing = false
             currentPage++
+        }
+    }
+
+    override fun onBackPressed() {
+        if (sv_tag.visibility == View.GONE) {
+            sv_tag.visibility = View.VISIBLE
+            searchRecycleView.visibility = View.GONE
+            mSearchAdapter.setNewData(null)
+        } else {
+            finish()
         }
     }
 }
