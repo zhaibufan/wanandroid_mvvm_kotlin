@@ -1,5 +1,6 @@
 package com.zhai.wanandroid_mvvm.ui.fragment
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
@@ -9,6 +10,8 @@ import com.zhai.wanandroid_mvvm.base.BaseVMFragment
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Banner
 import com.zhai.wanandroid_mvvm.onNetError
+import com.zhai.wanandroid_mvvm.toActivity
+import com.zhai.wanandroid_mvvm.ui.activity.H5Activity
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeArticleAdapter
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeBannerAdapter
 import com.zhai.wanandroid_mvvm.utils.toast
@@ -50,7 +53,13 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     private fun initAdapter() {
         mArticleAdapter.run {
-            setOnItemClickListener { adapter, view, position -> context?.toast(position.toString())}
+            setOnItemClickListener { _, _, position ->
+                val value = mViewModel.articleData.value!!.datas[position]
+                val bundle = Bundle()
+                bundle.putString("url", value.link)
+                bundle.putString("title", value.title)
+                activity?.toActivity<H5Activity>(extra = bundle)
+            }
             setOnLoadMoreListener({loadMore()}, mRecyclerView)
             addHeaderView(mHeaderView)
         }
