@@ -27,8 +27,11 @@ dependencies {
     def dependenciesX = rootProject.ext.dependenciesX
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':mvvm')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    if (Integer.valueOf(runModule) != 2) {
+        implementation project(':mvvm')
+    }
 
     implementation dependencies.material
     implementation dependencies.base_recyclerview

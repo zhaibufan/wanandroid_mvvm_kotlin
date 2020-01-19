@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+if (Integer.valueOf(runModule) == 2) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
@@ -6,6 +10,11 @@ android {
     def version = rootProject.ext.android
     compileSdkVersion version.compileSdkVersion
     defaultConfig {
+
+        if (Integer.valueOf(runModule) == 2) {//当为运行module时才有applicationId属性（可以做到不同module的app能在手机上共存）
+            applicationId "com.beyondsoft.mvvm"
+        }
+
         minSdkVersion version.minSdkVersion
         targetSdkVersion version.targetSdkVersion
         versionCode version.versionCode
@@ -19,6 +28,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main{
+            if (Integer.valueOf(runModule) == 2) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
         }
     }
 }
