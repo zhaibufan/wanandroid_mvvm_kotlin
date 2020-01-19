@@ -6,7 +6,8 @@ import kotlin.properties.Delegates
 import com.tencent.smtt.sdk.QbSdk
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.tencent.smtt.sdk.WebView
+import com.zhai.wanandroid_mvvm.ui.widget.X5WebView
 
 
 class App : Application() {

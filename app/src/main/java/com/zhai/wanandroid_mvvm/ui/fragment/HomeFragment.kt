@@ -54,7 +54,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     private fun initAdapter() {
         mArticleAdapter.run {
             setOnItemClickListener { _, _, position ->
-                val value = mViewModel.articleData.value!!.datas[position]
+                val value = data[position]
                 val bundle = Bundle()
                 bundle.putString("url", value.link)
                 bundle.putString("title", value.title)
@@ -63,6 +63,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
             setOnLoadMoreListener({loadMore()}, mRecyclerView)
             addHeaderView(mHeaderView)
         }
+
     }
 
     /**
