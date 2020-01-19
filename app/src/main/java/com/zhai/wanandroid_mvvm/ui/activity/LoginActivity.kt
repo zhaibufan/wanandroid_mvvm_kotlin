@@ -3,10 +3,9 @@ package com.zhai.wanandroid_mvvm.ui.activity
 import android.app.ProgressDialog
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.zhai.wanandroid_mvvm.R
-import com.zhai.wanandroid_mvvm.base.BaseVMActivity
+import com.beyondsoft.mvvm.base.BaseVMActivity
 import com.zhai.wanandroid_mvvm.utils.toast
 import com.zhai.wanandroid_mvvm.vm.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*

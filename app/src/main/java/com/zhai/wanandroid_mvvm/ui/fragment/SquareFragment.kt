@@ -1,8 +1,7 @@
 package com.zhai.wanandroid_mvvm.ui.fragment
 
 import com.zhai.wanandroid_mvvm.R
-import com.zhai.wanandroid_mvvm.base.BaseVMFragment
-import com.zhai.wanandroid_mvvm.base.BaseViewModel
+import com.beyondsoft.mvvm.base.BaseVMFragment
 import com.zhai.wanandroid_mvvm.vm.HomeViewModel
 
 class SquareFragment : BaseVMFragment<HomeViewModel>() {

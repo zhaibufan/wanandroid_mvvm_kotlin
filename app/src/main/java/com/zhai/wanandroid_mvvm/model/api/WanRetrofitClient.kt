@@ -2,7 +2,7 @@ package com.zhai.wanandroid_mvvm.model.api
 
 import com.zhai.wanandroid_mvvm.App
 import com.zhai.wanandroid_mvvm.Constants
-import com.zhai.wanandroid_mvvm.base.BaseRetrofitClient
+import com.beyondsoft.mvvm.base.BaseRetrofitClient
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

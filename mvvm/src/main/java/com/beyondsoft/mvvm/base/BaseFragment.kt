@@ -1,4 +1,4 @@
-package com.zhai.wanandroid_mvvm.base
+package com.beyondsoft.mvvm.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

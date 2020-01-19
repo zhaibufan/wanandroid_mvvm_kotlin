@@ -6,10 +6,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhai.wanandroid_mvvm.R
-import com.zhai.wanandroid_mvvm.base.BaseVMFragment
+import com.beyondsoft.mvvm.base.BaseVMFragment
+import com.beyondsoft.mvvm.onNetError
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Banner
-import com.zhai.wanandroid_mvvm.onNetError
 import com.zhai.wanandroid_mvvm.toActivity
 import com.zhai.wanandroid_mvvm.ui.activity.H5Activity
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeArticleAdapter

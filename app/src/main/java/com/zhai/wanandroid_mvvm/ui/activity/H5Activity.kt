@@ -3,7 +3,7 @@ package com.zhai.wanandroid_mvvm.ui.activity
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.zhai.wanandroid_mvvm.R.layout.activity_h5
-import com.zhai.wanandroid_mvvm.base.BaseActivity
+import com.beyondsoft.mvvm.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_h5.*
 
 class H5Activity : BaseActivity() {

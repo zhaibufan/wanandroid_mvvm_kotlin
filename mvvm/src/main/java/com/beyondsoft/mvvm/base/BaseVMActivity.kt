@@ -1,12 +1,10 @@
-package com.zhai.wanandroid_mvvm.base
+package com.beyondsoft.mvvm.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 
 /**
  * @author zhaixiaofan

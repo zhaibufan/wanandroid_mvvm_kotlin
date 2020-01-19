@@ -1,6 +1,6 @@
-package com.zhai.wanandroid_mvvm.base
+package com.beyondsoft.mvvm.base
 
-import com.zhai.wanandroid_mvvm.BuildConfig
+import com.beyondsoft.mvvm.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

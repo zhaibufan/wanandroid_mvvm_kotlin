@@ -1,10 +1,10 @@
 package com.zhai.wanandroid_mvvm.model.repository
 
-import com.zhai.wanandroid_mvvm.base.BaseRepository
+import com.beyondsoft.mvvm.base.BaseRepository
 import com.zhai.wanandroid_mvvm.model.api.WanRetrofitClient
-import com.zhai.wanandroid_mvvm.model.bean.Result
 import com.zhai.wanandroid_mvvm.model.bean.User
 import java.io.IOException
+import com.beyondsoft.mvvm.Result
 
 class LoginRepository : BaseRepository() {
 

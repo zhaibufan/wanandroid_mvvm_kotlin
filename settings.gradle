@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':mvvm'
 rootProject.name='wanandroid-mvvm'

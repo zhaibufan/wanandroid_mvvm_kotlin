@@ -1,5 +1,6 @@
 package com.zhai.wanandroid_mvvm.model.api
 
+import com.beyondsoft.mvvm.WanResponse
 import com.zhai.wanandroid_mvvm.model.bean.*
 import retrofit2.http.*
 

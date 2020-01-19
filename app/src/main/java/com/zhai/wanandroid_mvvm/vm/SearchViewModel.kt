@@ -1,8 +1,8 @@
 package com.zhai.wanandroid_mvvm.vm
 
 import androidx.lifecycle.MutableLiveData
-import com.zhai.wanandroid_mvvm.base.BaseViewModel
-import com.zhai.wanandroid_mvvm.executeResponse
+import com.beyondsoft.mvvm.base.BaseViewModel
+import com.beyondsoft.mvvm.executeResponse
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Hot
 import com.zhai.wanandroid_mvvm.model.repository.SearchRepository

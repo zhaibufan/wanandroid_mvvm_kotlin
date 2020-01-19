@@ -2,7 +2,7 @@ package com.zhai.wanandroid_mvvm.ui.fragment
 
 import android.os.Bundle
 import com.zhai.wanandroid_mvvm.R
-import com.zhai.wanandroid_mvvm.base.BaseVMFragment
+import com.beyondsoft.mvvm.base.BaseVMFragment
 import com.zhai.wanandroid_mvvm.vm.HomeViewModel
 
 class ProjectTypeFragment : BaseVMFragment<HomeViewModel>() {

@@ -1,4 +1,4 @@
-package com.zhai.wanandroid_mvvm.model.bean
+package com.beyondsoft.mvvm
 
 /**
  * 密封类  所定义的子类都必须继承于密封类，表示一组受限的类

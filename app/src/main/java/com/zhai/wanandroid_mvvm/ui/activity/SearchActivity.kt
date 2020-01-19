@@ -3,13 +3,11 @@ package com.zhai.wanandroid_mvvm.ui.activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhai.wanandroid_mvvm.R
-import com.zhai.wanandroid_mvvm.base.BaseVMActivity
+import com.beyondsoft.mvvm.base.BaseVMActivity
 import com.zhai.wanandroid_mvvm.model.bean.ArticleList
 import com.zhai.wanandroid_mvvm.model.bean.Hot
 import com.zhai.wanandroid_mvvm.ui.adapter.HomeArticleAdapter

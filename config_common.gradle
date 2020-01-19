@@ -20,7 +20,6 @@ ext {
             flowlayoutLib           : "1.1.2",
             tbsWebview              : "43697",
             junit                   : '4.12',
-
     ]
 
     versionX = [

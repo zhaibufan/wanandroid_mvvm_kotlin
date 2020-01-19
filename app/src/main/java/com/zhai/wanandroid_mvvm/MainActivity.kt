@@ -5,7 +5,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.google.android.material.navigation.NavigationView
-import com.zhai.wanandroid_mvvm.base.BaseActivity
+import com.beyondsoft.mvvm.base.BaseActivity
 import com.zhai.wanandroid_mvvm.ui.activity.LoginActivity
 import com.zhai.wanandroid_mvvm.ui.activity.SearchActivity
 import com.zhai.wanandroid_mvvm.ui.fragment.*

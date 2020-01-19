@@ -3,14 +3,13 @@ package com.zhai.wanandroid_mvvm.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.zhai.wanandroid_mvvm.base.BaseViewModel
-import com.zhai.wanandroid_mvvm.executeResponse
-import com.zhai.wanandroid_mvvm.model.bean.Result
+import com.beyondsoft.mvvm.base.BaseViewModel
 import com.zhai.wanandroid_mvvm.model.bean.User
 import com.zhai.wanandroid_mvvm.model.repository.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.beyondsoft.mvvm.Result
 
 class LoginViewModel : BaseViewModel() {
 

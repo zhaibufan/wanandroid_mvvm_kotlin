@@ -1,19 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
 android {
+
     def version = rootProject.ext.android
     compileSdkVersion version.compileSdkVersion
     defaultConfig {
-        applicationId version.applicationId
         minSdkVersion version.minSdkVersion
         targetSdkVersion version.targetSdkVersion
         versionCode version.versionCode
         versionName version.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,13 +28,20 @@ dependencies {
     def dependenciesX = rootProject.ext.dependenciesX
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':mvvm')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation dependencies.material
-    implementation dependencies.base_recyclerview
-    implementation dependenciesX.swiperefreshlayout
-    implementation dependencies.glide
-    implementation dependencies.flowlayout_lib
-    implementation dependencies.tbs_webview
+    api dependenciesX.appcompat
+    api dependenciesX.ktx_core
+    api dependenciesX.constraint_layout
+    testApi dependencies.junit
+    androidTestApi dependenciesX.test_junit
+    androidTestApi dependenciesX.espresso
+
+    api dependenciesX.kotlinx_coroutines
+    api dependenciesX.lifecycle_viewmodel
+    api dependencies.retrofit2
+    api dependencies.retrofit2_converter
+    api dependencies.okhttp_interceptor
+    api dependenciesX.swiperefreshlayout
+    api dependenciesX.lifecycle_livedata
 }

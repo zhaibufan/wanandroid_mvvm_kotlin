@@ -1,9 +1,9 @@
-package com.zhai.wanandroid_mvvm.base
+package com.beyondsoft.mvvm.base
 
-import com.zhai.wanandroid_mvvm.model.bean.Result
-import com.zhai.wanandroid_mvvm.model.bean.WanResponse
+import com.beyondsoft.mvvm.WanResponse
 import java.io.IOException
 import java.lang.Exception
+import com.beyondsoft.mvvm.Result
 
 open class BaseRepository {
 
